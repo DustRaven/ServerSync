@@ -19,6 +19,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonStreamParser;
 import com.superzanti.serversync.util.errors.InvalidSyncFileException;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  * Holds all relevant information about a synchronizable file, also handles client only files
@@ -121,10 +122,9 @@ public class SyncFile implements Serializable {
 	 * @return true if file is a package
 	 */
 	private boolean isZipJar(String fileName) {
-		// TODO make a better way to do this, perhaps use failure of javas
-		// ZippedFile class
 		boolean isZip = false;
-		if (fileName.endsWith(".zip") || fileName.endsWith(".jar")) {
+		String extension = FilenameUtils.getExtension(fileName);
+		if (extension.equals(".zip") || extension.equals(".jar")) {
 			isZip = true;
 		}
 
